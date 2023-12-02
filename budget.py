@@ -17,3 +17,7 @@ class Category:
             self.ledger.append({"amount": -amount, "description": description})
             return True
         return False
+
+    # Method to calculate and return the current balance of the ledger.
+    def get_balance(self):
+        return sum(item['amount'] for item in self.ledger)
