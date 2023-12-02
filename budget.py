@@ -30,3 +30,6 @@ class Category:
             return True
         return False
 
+    # Method to check if a specified amount is available in the ledger.
+    def check_funds(self, amount):
+        return self.get_balance() >= amount
