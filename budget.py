@@ -10,3 +10,10 @@ class Category:
     def deposit(self, amount, description=""):
         self.ledger.append({"amount": amount, "description": description})
 
+    # Method to withdraw an amount from the category's ledger.
+    # Checks if the withdrawal amount is available before proceeding.
+    def withdraw(self, amount, description=""):
+        if self.check_funds(amount):
+            self.ledger.append({"amount": -amount, "description": description})
+            return True
+        return False
