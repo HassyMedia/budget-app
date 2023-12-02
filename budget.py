@@ -33,3 +33,13 @@ class Category:
     # Method to check if a specified amount is available in the ledger.
     def check_funds(self, amount):
         return self.get_balance() >= amount
+
+    # Special method to define the string representation of the Category object.
+    # Formats and returns the ledger entries and the total as a string.
+    def __str__(self):
+        title = f"{self.name:*^30}\n"
+        items = "".join(f"{item['description'][:23]:23}{item['amount']:>7.2f}\n" for item in self.ledger)
+        total = f"Total: {self.get_balance():.2f}"
+        return title + items + total
+
+
