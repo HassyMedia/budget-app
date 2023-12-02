@@ -42,4 +42,24 @@ class Category:
         total = f"Total: {self.get_balance():.2f}"
         return title + items + total
 
+# Function to create a bar chart representing the percentage spent in each category.
+def create_spend_chart(categories):
+    # Calculate total and individual category spending.
+    total_spent = sum(sum(-item['amount'] for item in category.ledger if item['amount'] < 0) for category in categories)
+    category_spent = [(category.name, sum(-item['amount'] for item in category.ledger if item['amount'] < 0)) for category in categories]
+
+    # Format the chart string with category names and spending percentages.
+    chart = "Percentage spent by category\n"
+    for i in range(100, -1, -10):
+        chart += f"{i:>3}| " + "".join("o  " if (spent / total_spent * 100) >= i else "   " for _, spent in category_spent) + "\n"
+
+    chart += "    " + "-" * (len(categories) * 3 + 1) + "\n"
+
+    # Add category names to the chart.
+    max_length = max(len(category.name) for category in categories)
+    for i in range(max_length):
+        chart += "     " + "".join(category.name[i] + "  " if i < len(category.name) else "   " for category in categories) + "\n"
+
+    return chart.rstrip("\n")
+
 
