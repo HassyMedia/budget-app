@@ -4,3 +4,9 @@ class Category:
     def __init__(self, name):
         self.name = name
         self.ledger = []
+
+    # Method to deposit an amount into the category's ledger.
+    # Accepts an amount and an optional description.
+    def deposit(self, amount, description=""):
+        self.ledger.append({"amount": amount, "description": description})
+
