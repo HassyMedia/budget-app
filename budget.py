@@ -21,3 +21,12 @@ class Category:
     # Method to calculate and return the current balance of the ledger.
     def get_balance(self):
         return sum(item['amount'] for item in self.ledger)
+    # Method to transfer an amount from this category to another category.
+    # Performs a withdrawal in this category and a deposit in the other category.
+    def transfer(self, amount, category):
+        if self.check_funds(amount):
+            self.withdraw(amount, "Transfer to " + category.name)
+            category.deposit(amount, "Transfer from " + self.name)
+            return True
+        return False
+
