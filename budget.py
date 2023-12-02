@@ -62,4 +62,18 @@ def create_spend_chart(categories):
 
     return chart.rstrip("\n")
 
+# Example usage of the budget app.
+food = Category("Food")
+clothing = Category("Clothing")
+auto = Category("Auto")
 
+# Making some transactions in the food and clothing categories.
+food.deposit(1000, "initial deposit")
+food.withdraw(10.15, "groceries")
+food.withdraw(15.89, "restaurant and more food")
+food.transfer(50, clothing)
+
+# Displaying the ledger for the food category and the spend chart.
+print(food)
+print(create_spend_chart([food, clothing, auto]))
+  
